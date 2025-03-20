@@ -4,7 +4,6 @@
   tasks:
     - name: Upgrade
       update_cache: true
-      name: "*"
       state: latest
       apt: state=latest force_apt_get=yes
       
