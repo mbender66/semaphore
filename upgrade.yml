@@ -2,8 +2,5 @@
 - hosts: "*"
   become: yes
   tasks:
-    - name: apt
-      apt:
-        upgrade: yes
-        update_cache: yes
-    
+    - name: Upgrade
+      apt: state=latest force_apt_get=yes
