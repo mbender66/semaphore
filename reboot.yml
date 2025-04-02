@@ -1,5 +1,5 @@
 ---
-- hosts: "all"
+- hosts: "*"
 - name: Check if reboot is needed
       ansible.builtin.shell:
         cmd: "dpkg --get-selections | grep hold | wc -l"
