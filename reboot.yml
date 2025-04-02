@@ -1,9 +1,10 @@
+---
 - name: Check if reboot is needed
       ansible.builtin.shell:
         cmd: "dpkg --get-selections | grep hold | wc -l"
         register: reboot_required
       ignore_errors: true
-    - name: Reboot the system
+- name: Reboot the system
       ansible.builtin.reboot:
         msg: "Rebooting for apt updates"
       when: reboot_required.stdout != '0'
