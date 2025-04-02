@@ -1,12 +1,13 @@
 ---
 - hosts: "*"
   become: yes
-- name: Check if reboot is needed
+  tasks:
+    - name: Check
       ansible.builtin.shell:
-        cmd: "dpkg --get-selections | grep hold | wc -l"
+        cmd: dpkg --get-selections | grep hold | wc -l
         register: reboot_required
-      ignore_errors: true
-- name: Reboot the system
+        ignore_errors: true
+    - name: Reboot
       ansible.builtin.reboot:
-        msg: "Rebooting for apt updates"
-      when: reboot_required.stdout != '0'
+        msg: Rebooting for apt updates
+        when: reboot_required.stdout != '0'
