@@ -1,13 +1,11 @@
 ---
-- hosts: "*"
-  become: yes
+- name: reboot module
+  hosts: "*"
+  become: true
   tasks:
-    - name: Check
-      ansible.builtin.shell:
-        cmd: dpkg --get-selections | grep hold | wc -l
-        register: reboot_required
-        ignore_errors: true
-    - name: Reboot
+    - name: reboot host(s)
       ansible.builtin.reboot:
-        msg: Rebooting for apt updates
-        when: reboot_required.stdout != '0'
+        msg: "rebooted by Ansible"
+        pre_reboot_delay: 5
+        post_reboot_delay: 10
+        test_command: "whoami"
