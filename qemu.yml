@@ -4,5 +4,5 @@
   tasks:
     - name: Install QEMU
       package:
-        name: qemu
+        name: qemu-guest-agent
         state: present
