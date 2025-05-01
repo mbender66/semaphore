@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu_hosts
+  become: true
+  tasks:
+    - name: Install QEMU
+      package:
+        name: qemu
+        state: present
